@@ -16,7 +16,8 @@ class Login extends Component {
     this.handleOnChange = this.handleOnChange.bind(this);
   }
 
-  async handleClickUser() {
+  async handleClickUser(event) {
+    event.preventDefault();
     this.setState({
       loading: true,
     });
