@@ -71,16 +71,16 @@ class Search extends Component {
         <div>
           <h1>{`Resultado de álbuns de: ${saveInput}`}</h1>
           <div>
-            { arrayApi.map(({ collectionId, collectionName }) => (
-              <nav key={ collectionId }>
+            { arrayApi.map(({ collectionId, collectionName, artworkUrl100 }) => (
+              <li key={ collectionId }>
                 <Link
                   data-testid={ `link-to-album-${collectionId}` }
                   to={ `/album/${collectionId}` }
                 >
-                  {' '}
                   { collectionName }
+                  <img src={ artworkUrl100 } alt={ collectionName } />
                 </Link>
-              </nav>
+              </li>
             )) }
           </div>
         </div>
