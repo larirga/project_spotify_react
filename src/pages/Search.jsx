@@ -78,7 +78,9 @@ class Search extends Component {
                   to={ `/album/${collectionId}` }
                 >
                   { collectionName }
-                  <img src={ artworkUrl100 } alt={ collectionName } />
+                  <div>
+                    <img src={ artworkUrl100 } alt={ collectionName } />
+                  </div>
                 </Link>
               </li>
             )) }
