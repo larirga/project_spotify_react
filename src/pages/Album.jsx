@@ -28,6 +28,7 @@ class Album extends Component {
 
   render() {
     const { artistName, albumName, listMusic } = this.state;
+    console.log(listMusic);
     return (
       <div data-testid="page-album">
         <Header />
@@ -39,6 +40,7 @@ class Album extends Component {
             key={ music.trackName }
             trackName={ music.trackName }
             previewUrl={ music.previewUrl }
+            music={ music }
           />
         ))}
       </div>
