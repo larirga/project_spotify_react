@@ -1,50 +1,46 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Loading from './Loading';
-import { addSong, removeSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
+// import { addSong, removeSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class MusicCard extends Component {
-  constructor() {
-    super();
-    this.state = {
-      check: false,
-      loading: false,
-      arrayFavoriteMusic: [],
-    };
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     check: false,
+  //     loading: false,
+  //     arrayFavoriteMusic: [],
+  //   };
+  // }
 
-    this.handleFavorites = this.handleFavorites.bind(this);
-  }
+  // async componentDidMount() {
+  //   const favoritesMusics = await getFavoriteSongs();
+  //   this.setState({
+  //     arrayFavoriteMusic: favoritesMusics,
+  //   });
+  // }
 
-  async componentDidMount() {
-    const favoritesMusics = await getFavoriteSongs();
-    this.setState({
-      arrayFavoriteMusic: favoritesMusics,
-    });
-  }
-
-  async handleFavorites(event, music) {
-    this.setState({
-      loading: true,
-    }, () => {});
-    if (!event.target.checked) {
-      await removeSong(music);
-      this.setState({
-        check: false,
-        loading: false,
-      });
-    } else {
-      // console.log('cliquei');
-      await addSong(music);
-      this.setState({
-        check: true,
-        loading: false,
-      });
-    }
-  }
+  // async handleFavorites(event, music) {
+  //   this.setState({
+  //     loading: true,
+  //   }, () => {});
+  //   if (!event.target.checked) {
+  //     await removeSong(music);
+  //     this.setState({
+  //       check: false,
+  //       loading: false,
+  //     });
+  //   } else {
+  //     // console.log('cliquei');
+  //     await addSong(music);
+  //     this.setState({
+  //       check: true,
+  //       loading: false,
+  //     });
+  //   }
+  // }
 
   render() {
-    const { trackName, previewUrl, music, trackId } = this.props;
-    const { check, loading, arrayFavoriteMusic } = this.state;
+    const { trackName, previewUrl, music, checkbox, handleChange } = this.props;
     // console.log(this.props);
     return (
       <div>
@@ -58,14 +54,12 @@ class MusicCard extends Component {
         <div>
           <label htmlFor="favorites">
             <p> Favorite </p>
-            { loading ? <Loading /> : null }
             <input
               type="checkbox"
               data-testid={ `checkbox-music-${music.trackId}` }
-              onChange={ (event) => this.handleFavorites(event, music) }
-              checked={ !check
-                ? arrayFavoriteMusic.some((song) => song.trackId === trackId)
-                : check }
+              onChange={ handleChange }
+              checked={ checkbox }
+              name={ trackName }
             />
           </label>
         </div>
